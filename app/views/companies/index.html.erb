@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Companies</h1>
+<h1>Companies</h1>
 
 <table>
   <thead>
@@ -11,17 +11,20 @@
     </tr>
   </thead>
 
-  <tbody>
+  <p>
     <% @companies.each do |company| %>
-      <tr>
-        <td><%= company.locations %></td>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Show', company %></td>
-        <td><%= link_to 'Edit', edit_company_path(company) %></td>
-        <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <h4><%= company.name %></h4>
+      <%= link_to 'Show', company %>
+      <%= link_to 'Edit', edit_company_path(company) %>
+      <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <h5>Locations:</h5>
+      <ul>
+        <% company.locations.each do |location| %>
+          <li> <%= location.city %> </li>
+        <% end %>
+      </ul>
     <% end %>
-  </tbody>
+  </p>
 </table>
 
 <br>

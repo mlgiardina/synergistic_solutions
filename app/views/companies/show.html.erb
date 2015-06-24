@@ -1,13 +1,32 @@
 <p id="notice"><%= notice %></p>
 
+<h2> <%= @company.name %> </h2>
+
 <p>
   <strong>Locations:</strong>
-  <%= @company.locations %>
+  <ul>
+    <% @company.locations.all.each do |location| %>
+      <li> <%= location.city %> </li>
+    <% end %>
+  </ul>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @company.name %>
+  <strong>Courses:</strong>
+  <ul>
+    <% @company.courses.each do |course| %>
+      <li> <%= course.name %> </li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Employees:</strong>
+  <ul>
+    <% @company.employees.each do |employee| %>
+      <li> <%= employee.full_name %> </li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
