@@ -3,7 +3,8 @@ class CreateEmployees < ActiveRecord::Migration
     create_table :employees do |t|
       t.string :full_name
       t.string :title
-      t.belongs_to :location, index: true, foreign_key: true, null: false
+      t.belongs_to :location, index: true, foreign_key: true
+      t.belongs_to :company, index: true, foreign_key: true
 
       t.timestamps null: false
     end
