@@ -1,19 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Employees:</strong>
-  <%= @location.employees %>
-</p>
-
-<p>
-  <strong>Courses:</strong>
-  <%= @location.courses %>
-</p>
+<h2> <%= @location.company.name %> </h2>
 
 <p>
   <strong>City:</strong>
-  <%= @location.city %>
+    <%= @location.city %>
+</p>
+<p>
+  <strong>Employees at This Location:</strong>
+  <ul>
+    <% @location.employees.each do |employee| %>
+      <li> <%= employee.full_name %> </li>
+    <% end %>
+  </ul>
 </p>
 
+<p>
+  <strong>Courses at This Location:</strong>
+  <ul>
+    <% @location.courses.each do |course| %>
+      <li> <%= course.name %> </li>
+    <% end %>
+  </ul>
+</p>
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

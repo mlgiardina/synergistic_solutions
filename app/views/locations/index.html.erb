@@ -1,28 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Locations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Employees</th>
-      <th>Courses</th>
-      <th>City</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= location.employees %></td>
-        <td><%= location.courses %></td>
-        <td><%= location.city %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+<h2>Locations</h2>
+  <% @locations.each do |location| %>
+      <h4><%=location.company.name %> | <%= location.city %></h4>
+      <h5>Courses at This Location:</h5>
+      <ul>
+        <% location.courses.each do |course| %>
+          <li> <%= course.name %> </li>
+        <% end %>
+      </ul>
+      <h5>Employees at This Location:</h5>
+      <ul>
+        <% location.employees.each do |employee| %>
+          <li> <%= employee.full_name %> </li>
+        <% end %>
+      </ul>
+      <%= link_to 'Show', location %>
+      <%= link_to 'Edit', edit_location_path(location) %></td>
+  <% end %>
   </tbody>
 </table>
 
