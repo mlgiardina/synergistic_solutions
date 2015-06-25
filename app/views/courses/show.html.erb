@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h2> <%= @course.name %> </h2>
+<p> <strong>Company: </strong> <%= @course.location.company.name %> </p>
 <h4> <%= @course.location.city %> </h4>
 <h4>Employees in This Course: </h4>
 <ul>
