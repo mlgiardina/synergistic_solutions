@@ -2,7 +2,7 @@
 
 <h2>Locations</h2>
   <% @locations.each do |location| %>
-      <h4><%=location.company.name %> | <%= location.city %></h4>
+      <h4> <%=location.company.name %> | <%= location.city %> </h4>
       <h5>Courses at This Location:</h5>
       <ul>
         <% location.courses.each do |course| %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624214306) do
+ActiveRecord::Schema.define(version: 20150625004345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20150624214306) do
 
   add_index "courses", ["location_id"], name: "index_courses_on_location_id", using: :btree
 
+  create_table "employee_courses", force: :cascade do |t|
+    t.integer  "employee_id", null: false
+    t.integer  "course_id",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "employee_courses", ["course_id"], name: "index_employee_courses_on_course_id", using: :btree
+  add_index "employee_courses", ["employee_id"], name: "index_employee_courses_on_employee_id", using: :btree
+
   create_table "employees", force: :cascade do |t|
     t.string   "full_name"
     t.string   "title"
@@ -43,14 +53,6 @@ ActiveRecord::Schema.define(version: 20150624214306) do
   add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
   add_index "employees", ["location_id"], name: "index_employees_on_location_id", using: :btree
 
-  create_table "employees_courses", force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "course_id",   null: false
-  end
-
-  add_index "employees_courses", ["course_id"], name: "index_employees_courses_on_course_id", using: :btree
-  add_index "employees_courses", ["employee_id"], name: "index_employees_courses_on_employee_id", using: :btree
-
   create_table "locations", force: :cascade do |t|
     t.integer  "company_id", null: false
     t.string   "city"
@@ -61,9 +63,9 @@ ActiveRecord::Schema.define(version: 20150624214306) do
   add_index "locations", ["company_id"], name: "index_locations_on_company_id", using: :btree
 
   add_foreign_key "courses", "locations"
+  add_foreign_key "employee_courses", "courses"
+  add_foreign_key "employee_courses", "employees"
   add_foreign_key "employees", "companies"
   add_foreign_key "employees", "locations"
-  add_foreign_key "employees_courses", "courses"
-  add_foreign_key "employees_courses", "employees"
   add_foreign_key "locations", "companies"
 end

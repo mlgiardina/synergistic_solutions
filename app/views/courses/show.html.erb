@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+<h2> <%= @course.name %> </h2>
+<h4> <%= @course.location.city %> </h4>
+<h4>Employees in This Course: </h4>
+<ul>
+  <% @course.employees.each do |employee| %>
+   <li> <%= employee.full_name %> </li>
+  <% end %>
+</ul>
+
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

@@ -1,13 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Employee: <%= @employee.full_name %> </h2>
+
 <p>
-  <strong>Full name:</strong>
-  <%= @employee.full_name %>
+  <strong>Company:</strong>
+    <%= @employee.company.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+    <%= @employee.location.city %>
 </p>
 
 <p>
   <strong>Title:</strong>
   <%= @employee.title %>
+</p>
+
+<p>
+  <strong>Courses:</strong>
+  <ul>
+    <% @employee.courses.each do |course| %>
+      <li> <%= course.name %> </li>
+    <% end %>
+  </ul>
 </p>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
